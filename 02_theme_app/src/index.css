@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Quicksand:wght@300..700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Quicksand:wght@300..700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -8,8 +7,9 @@
 /* color scheme */
 
 :root {
+  --color-blue-6: #006eff;
   --color-blue-5: #0094ff;
-  --color-blue-1: #0095ff1c;
+  --color-blue-1: #0095ff27;
   --color-blue-0-5: #0095ff0e;
   --color-red-5: #ff0004;
   --color-red-1: #ff000410;
@@ -45,14 +45,18 @@
   scroll-behavior: smooth;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Quicksand", serif;
-  
   font-weight: 700;
   letter-spacing: -0.1px;
 }
 
-p, span {
+\p, span {
   font-family: "Inter", serif;
  
 }

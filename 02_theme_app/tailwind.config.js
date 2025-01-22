@@ -24,6 +24,7 @@ export default {
         black: "var(--color-black-9)", // black-9 is fine
 
         // Blues
+        "blue-6": "var(--color-blue-6)",
         "blue-5": "var(--color-blue-5)",
         "blue-1": "var(--color-blue-1)",
         "blue-05": "var(--color-blue-0-5)", // or blue-half
