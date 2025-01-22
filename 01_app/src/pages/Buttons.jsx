@@ -3,7 +3,7 @@ import Button from "../components/Button";
 
 const Buttons = () => {
   return (
-    <div className="bg-slate-300 h-screen">
+    <div className=" bg-[#0f0f0f] h-screen">
       <div className="w-full flex flex-col  flex-wrap gap-2  pt-20">
         <div className="w-full flex items-center flex-wrap gap-2 justify-center">
           <Button size="lg">default</Button>

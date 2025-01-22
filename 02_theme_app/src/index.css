@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* color scheme */
+
+:root {
+  --color-blue-5: #0094ff;
+  --color-blue-1: #0095ff1c;
+  --color-blue-0-5: #0095ff0e;
+  --color-red-5: #ff0004;
+  --color-red-1: #ff000410;
+  --color-black-9: #1b1c1d;
+  --color-gray-9: #1e1e1e;
+  --color-gray-6: #464646;
+  --color-gray-5: #555555;
+  --color-gray-3: #d8d8d8;
+  --color-gray-2: #efefef;
+  --color-gray-1: #f1f1f1;
+
+  --color-white: #ffffff;
+
+  --color-border-light: #e0e0e0;
+  --color-border-dark: #555555;
+
+  /* theme colors --------------background -------------- */
+
+  --color-background-light-primary: #ffffff;
+  --color-background-light-secondary: #f9f9f9;
+
+  --color-background-dark-primary: #212121;
+  --color-background-dark-secondary: #181818;
+
+  --color-text-light-primary: #1b1c1d;
+  --color-text-light-secondary: #464646;
+
+  --color-text-dark-primary-and-secondary: #ececec;
+  /* --text-dark-secondary: #ECECEC; */
+}
+
+* {
+  scroll-behavior: smooth;
+}
