@@ -3,7 +3,7 @@ import React from "react";
 const P = ({ className, children, ...props }) => {
   return (
     <p
-      className={`text-text-light-sec dark:text-text-dark " ${className}`}
+      className={`text-text-light-sec dark:text-text-dark ${className} font-light`}
       {...props}
     >
       {children}

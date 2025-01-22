@@ -6,7 +6,7 @@ import ThemeToggleButton from "./components/ThemeToggleButton";
 
 const App = () => {
   return (
-    <div className="bg-bg-light-pri dark:bg-bg-dark-pri text-text-light dark:text-text-dark">
+    <div className="bg-bg-light-pri dark:bg-bg-dark-pri">
       <ThemeToggleButton />
       <Home />
       <Login />
