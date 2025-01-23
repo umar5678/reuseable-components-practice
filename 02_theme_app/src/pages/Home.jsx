@@ -14,10 +14,8 @@ const Home = () => {
         cupiditate reiciendis ex obcaecati iure aspernatur ipsa voluptates quae
         nihil.
       </P>
-      <P className="">Consistent iconography across the app.</P>
-      <div className="h-32 w-32 bg-blue hover:bg-yellow "></div>
-      <div className="h-32 w-32 bg-yellow hover:bg-green"></div>
-      <div className="h-32 w-32 bg-brand-green hover:bg-blue"></div>
+      <P>Consistent iconography across the app.</P>
+      
     </div>
   );
 };

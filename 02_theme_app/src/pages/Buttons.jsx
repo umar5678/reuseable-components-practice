@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../components/ui/Button";
-import {H1  } from "../components/ui/Typography"
+import { H1 } from "../components/ui/Typography";
 
 const Buttons = () => {
   return (
@@ -10,7 +10,9 @@ const Buttons = () => {
 
         <H1 className="text-center">Default buttons</H1>
         <div className="w-full flex items-center flex-wrap gap-2 justify-center">
-          <Button disabled size="lg">default</Button>
+          <Button disabled size="lg">
+            default
+          </Button>
           <Button className="">default</Button>
 
           <Button size="sm" className="">
@@ -90,8 +92,7 @@ const Buttons = () => {
           </Button>
           <Button variant="destructive" size="icon"></Button>
         </div>
-    
-      
+
         <H1 className="text-center">Ghost</H1>
         {/* ---------------------- ghost ---------------------- */}
         <div className="w-full flex items-center flex-wrap gap-2 justify-center">
