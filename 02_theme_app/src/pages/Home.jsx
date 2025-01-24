@@ -1,11 +1,13 @@
 import React from "react";
-import { P, H1  } from "../components/ui/Typography";
+import { P, H1 } from "../components/ui/Typography";
+import QuillRTE from "../components/QuillRTE";
 
 const Home = () => {
   return (
     <div className="h-screen ">
       {" "}
       <H1 className=" text-4xl p-6 ">coursees</H1>
+      <QuillRTE/>
       <H1 className="text-2xl font-bold ">
         Artificial Intelligence and Machine Learning
       </H1>
@@ -15,7 +17,10 @@ const Home = () => {
         nihil.
       </P>
       <P>Consistent iconography across the app.</P>
-      
+
+
+      <H1 className="text-2xl font-bold ">Editor</H1>
+
     </div>
   );
 };

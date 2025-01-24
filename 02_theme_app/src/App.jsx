@@ -8,9 +8,9 @@ const App = () => {
   return (
     <div className="bg-bg-light-pri dark:bg-bg-dark-pri p-2">
       <ThemeToggleButton />
+      <Home />
       <Login />
       <Buttons />
-      <Home />
     </div>
   );
 };
