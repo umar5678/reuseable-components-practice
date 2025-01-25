@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* color scheme */
 
 :root {
@@ -61,18 +62,24 @@ h6 {
 }
 
 p,
-span {
+span,
+ul,
+li {
   font-family: "Inter", serif;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   font-weight: 350;
 }
 
-
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--color-text-light-primary);
 }
 
-p{
+p {
   color: var(--color-text-light-secondary);
 }
 .dark h1,
@@ -85,6 +92,7 @@ p{
   /* color: #ececec; */
 }
 
-.dark p, .dark{
+.dark p,
+.dark li {
   color: var(--color-text-dark-primary-and-secondary);
 }

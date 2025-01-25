@@ -3,21 +3,21 @@ import Button from "../ui/Button";
 import { IoMdAdd } from "react-icons/io";
 import { AiOutlineDelete } from "react-icons/ai";
 import Input from "../ui/Input";
+import DisplayMcqs from "./DisplayMcqs";
+import Modal from "../modals/Modal";
 // Build two simple functional components, Card and CardContent. These help create a consistent layout and styling for various sections like forms and saved questions.
-const Card = ({ children, className }) => {
-  return <div className={`    ${className}`}>{children}</div>;
-};
-//
-const CardContent = ({ children, className }) => {
-  return <div className={`  ${className}`}>{children}</div>;
-};
+
 
 const CreateMCQs = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
   const [mcqs, setMcqs] = useState([]);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [newQuestion, setNewQuestion] = useState({
     question: "",
-    choises: ["", ""],
+    choices: ["", ""],
     correctAnswer: null,
   });
 
@@ -25,11 +25,11 @@ const CreateMCQs = () => {
 
   // choise change/update method
   const handleChoiseChange = (index, value) => {
-    const updatedChoises = [...newQuestion.choises];
-    updatedChoises[index] = value;
+    const updatedchoices = [...newQuestion.choices];
+    updatedchoices[index] = value;
     setNewQuestion((prev) => ({
       ...prev,
-      choises: updatedChoises,
+      choices: updatedchoices,
     }));
   };
 
@@ -38,112 +38,140 @@ const CreateMCQs = () => {
   const handleAddChoise = () => {
     setNewQuestion((prev) => ({
       ...prev,
-      choises: [...prev.choises, ""],
+      choices: [...prev.choices, ""],
     }));
   };
   // handl edelete choise
 
   const handleDeleteChoise = (choiseIndex) => {
-    const updatedChoises = [...newQuestion.choises].filter(
+    const updatedchoices = [...newQuestion.choices].filter(
       (_, index) => index != choiseIndex
     );
 
     setNewQuestion((prev) => ({
       ...prev,
-      choises: updatedChoises,
+      choices: updatedchoices,
     }));
   };
-// handle saving question
-    const handleSaveQuestion = (e) => {
-      e.preventDefault()
+  // handle saving question
+  const handleSaveQuestion = (e) => {
+    e.preventDefault();
     setMcqs((prev) => [newQuestion, ...prev]);
+    
     setNewQuestion({
       question: "",
-      choises: ["", ""],
+      choices: ["", ""],
       correctAnswer: null,
     });
     setIsFormVisible(false);
-    };
-    
-// cancle add question
+  };
 
-    const cancleAddQuestion = () => {
-        setNewQuestion({
-          question: "",
-          choises: ["", ""],
-          correctAnswer: null,
-        });
-        setIsFormVisible(false)
-    }
+  // cancle add question
 
-   return (
+  const cancleAddQuestion = () => {
+    setNewQuestion({
+      question: "",
+      choices: ["", ""],
+      correctAnswer: null,
+    });
+    setIsFormVisible(false);
+  };
+
+  return (
     <div>
       <Button variant="default" onClick={() => setIsFormVisible(true)}>
         <IoMdAdd /> Add
       </Button>
 
-          {isFormVisible && (
-              <form action="" onSubmit={handleSaveQuestion}>
-        <div className="">
-                  <Input
-                      required
-            label="Question"
-            placeholder="Enter a question"
-            value={newQuestion.question}
-            onChange={(e) =>
-              setNewQuestion((prev) => ({
-                ...prev,
-                question: e.target.value,
-              }))
-            }
-          ></Input>
+      {isFormVisible && (
+        <form action="" onSubmit={handleSaveQuestion}>
+          <div className="">
+            <Input
+              required
+              label="Question"
+              placeholder="Enter a question"
+              value={newQuestion.question}
+              onChange={(e) =>
+                setNewQuestion((prev) => ({
+                  ...prev,
+                  question: e.target.value,
+                }))
+              }
+            ></Input>
 
-          {newQuestion.choises.map((choise, index) => (
-            <div key={index} className="flex item-center mt-1">
-              <input
-                type="radio"
-                checked={newQuestion.correctAnswer === index}
-                onChange={() =>
-                  setNewQuestion((prev) => ({
-                    ...prev,
-                    correctAnswer: index,
-                  }))
-                }
-                className="h-6 w-6 relative top-6 mr-3"
-              />
-              <div className="flex-grow">
-                      <Input
-                          required
-                  type="text"
-                  value={choise}
-                  onChange={(e) => handleChoiseChange(index, e.target.value)}
-                ></Input>
+            {newQuestion.choices.map((choise, index) => (
+              <div key={index} className="flex item-center mt-1">
+                <input
+                  type="radio"
+                  checked={newQuestion.correctAnswer === index}
+                  onChange={() =>
+                    setNewQuestion((prev) => ({
+                      ...prev,
+                      correctAnswer: index,
+                    }))
+                  }
+                  className="h-6 w-6 relative top-6 mr-3"
+                />
+                <div className="flex-grow">
+                  <Input
+                    required
+                    type="text"
+                    value={choise}
+                    onChange={(e) => handleChoiseChange(index, e.target.value)}
+                  ></Input>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="relative top-5 ml-1"
+                  onClick={() => handleDeleteChoise(index)}
+                >
+                  {<AiOutlineDelete />}
+                </Button>
               </div>
+            ))}
+            <div className="flex-">
               <Button
                 variant="ghost"
-                size="icon"
-                className="relative top-5 ml-1"
-                onClick={() => handleDeleteChoise(index)}
+                className="my-4"
+                onClick={handleAddChoise}
               >
-                {<AiOutlineDelete />}
+                Add Choise
               </Button>
             </div>
-          ))}
-          <div className="flex-">
-            <Button variant="ghost" className="my-4" onClick={handleAddChoise}>
-              Add Choise
-            </Button>
-                      </div>
-                      <div className="flex justify-between"> 
-                          
-          <Button variant="primary" type="submit" >
-            Save Question
-                          </Button>
-                          <Button variant='default-outline' onClick={cancleAddQuestion}>Cancle</Button>
-                      </div>
-              </div>
-              </form>
+            <div className="flex justify-between">
+              <Button variant="primary" type="submit">
+                Save Question
+              </Button>
+              <Button variant="default-outline" onClick={cancleAddQuestion}>
+                Cancle
+              </Button>
+            </div>
+          </div>
+        </form>
       )}
+
+      <DisplayMcqs mcqs={mcqs} />
+
+      <button
+        onClick={openModal}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Open Modal
+      </button>
+
+      <Modal isOpen={isModalOpen} onClose={closeModal} title="Example Modal">
+        <p>This is the content of the modal.</p>
+        <p>
+          You can put any content you want here, like forms, text, images, etc.
+        </p>
+        <button
+          onClick={closeModal}
+          className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+        >
+          Close
+        </button>
+      </Modal>
     </div>
   );
 };

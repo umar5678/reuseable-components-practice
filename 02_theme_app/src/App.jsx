@@ -8,10 +8,10 @@ import CreateTest from "./pages/CreateTest";
 
 const App = () => {
   return (
-    <div className="bg-bg-light-pri dark:bg-bg-dark-pri p-2">
+    <div className="bg-bg-light-pri dark:bg-bg-dark-pri p-2 ">
       <ThemeToggleButton />
-      <CreateTest/>
-      <MCQs/>
+      <CreateTest />
+      <MCQs />
       <Home />
       <Login />
       <Buttons />
