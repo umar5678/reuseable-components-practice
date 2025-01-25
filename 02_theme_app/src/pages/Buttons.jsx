@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "../components/ui/Button";
-import { H1 } from "../components/ui/Typography";
 
 const Buttons = () => {
   return (
@@ -8,7 +7,7 @@ const Buttons = () => {
       <div className="w-full flex flex-col  flex-wrap gap-2  pt-20">
         {/* ---------------------- default ---------------------- */}
 
-        <H1 className="text-center">Default buttons</H1>
+        <h1 className="text-center">Default buttons</h1>
         <div className="w-full flex items-center flex-wrap gap-2 justify-center">
           <Button disabled size="lg">
             default
@@ -20,22 +19,22 @@ const Buttons = () => {
           </Button>
           <Button size="icon" className=""></Button>
         </div>
-        <H1 className="text-center">Default buttons</H1>
+        <h1 className="text-center">Default buttons</h1>
         {/* ---------------------- default Outline ---------------------- */}
         <div className="w-full flex items-center flex-wrap gap-2 justify-center">
-          <Button disabled variant="defaultOutline" size="lg">
+          <Button disabled variant="default-outline" size="lg">
             default
           </Button>
-          <Button variant="defaultOutline" className="">
+          <Button variant="default-outline" className="">
             default
           </Button>
 
-          <Button variant="defaultOutline" size="sm" className="">
+          <Button variant="default-outline" size="sm" className="">
             default
           </Button>
-          <Button variant="defaultOutline" size="icon" className=""></Button>
+          <Button variant="default-outline" size="icon" className=""></Button>
         </div>
-        <H1 className="text-center">Default buttons</H1>
+        <h1 className="text-center">Default buttons</h1>
         {/* ---------------------- primery ---------------------- */}
         <div className="w-full flex items-center flex-wrap gap-2 justify-center">
           <Button disabled variant="primary" size="lg">
@@ -50,22 +49,22 @@ const Buttons = () => {
           </Button>
           <Button variant="primary" size="icon" className=""></Button>
         </div>
-        <H1 className="text-center">Primary buttons</H1>
+        <h1 className="text-center">Primary buttons</h1>
         {/* ---------------------- primary Outline---------------------- */}
         <div className="w-full flex items-center flex-wrap gap-2 justify-center">
           <Button disabled variant="primaryOutline" size="lg">
             default
           </Button>
-          <Button variant="primaryOutline" className="">
+          <Button variant="primary-outline" className="">
             default
           </Button>
 
-          <Button variant="primaryOutline" size="sm" className="">
+          <Button variant="primary-outline" size="sm" className="">
             default
           </Button>
-          <Button variant="primaryOutline" size="icon" className=""></Button>
+          <Button variant="primary-outline" size="icon" className=""></Button>
         </div>
-        <H1 className="text-center">Secondary buttons</H1>
+        <h1 className="text-center">Secondary buttons</h1>
         {/* ---------------------- secondary ---------------------- */}
         <div className="w-full flex items-center flex-wrap gap-2 justify-center">
           <Button disabled variant="secondary" size="lg" className="">
@@ -80,7 +79,7 @@ const Buttons = () => {
           </Button>
           <Button variant="secondary" size="icon" className=""></Button>
         </div>
-        <H1 className="text-center">Danger buttons</H1>
+        <h1 className="text-center">Danger buttons</h1>
         {/* ---------------------- destructive ---------------------- */}
         <div className="w-full flex items-center flex-wrap gap-2 justify-center">
           <Button disabled variant="destructive" size="lg">
@@ -93,7 +92,7 @@ const Buttons = () => {
           <Button variant="destructive" size="icon"></Button>
         </div>
 
-        <H1 className="text-center">Ghost</H1>
+        <h1 className="text-center">Ghost</h1>
         {/* ---------------------- ghost ---------------------- */}
         <div className="w-full flex items-center flex-wrap gap-2 justify-center">
           <Button disabled variant="ghost" size="lg" className="">
@@ -107,7 +106,7 @@ const Buttons = () => {
           </Button>
           <Button variant="ghost" size="icon" className=""></Button>
         </div>
-        <H1 className="text-center">Links</H1>
+        <h1 className="text-center">Links</h1>
         {/* ---------------------- link ---------------------- */}
         <div className="w-full flex items-center flex-wrap gap-2 justify-center">
           <Button disabled variant="link" size="lg" className="">

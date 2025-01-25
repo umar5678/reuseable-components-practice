@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { H1 } from "../components/ui/Typography";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 import Textarea from "../components/ui/Textarea";
@@ -14,7 +13,7 @@ const Login = () => {
   return (
     <div className="h-screen ">
       <div className="">
-        <H1>Login Form</H1>
+        <h1>Login Form</h1>
         <form action="">
           <Input label="Email" type="email" placeholder="Enter your email" />
           <Input

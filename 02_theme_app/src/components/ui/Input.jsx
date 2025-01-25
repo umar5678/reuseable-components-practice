@@ -7,6 +7,7 @@ const Input = forwardRef(function input(
     name, // Required prop
     inputClasses = "",
     labelClasses = "",
+    className = "",
     required = false, // Added required prop
     errorMessage, // For error handling
     ...props
@@ -17,7 +18,7 @@ const Input = forwardRef(function input(
   const errorId = errorMessage ? `${id}-error` : null;
 
   return (
-    <div className="flex flex-col">
+    <div className={`flex flex-col ${className}`}>
       <label
         className={`text-text-light-sec dark:text-gray-3 font-semibold text-sm py-1 mt-2 ${labelClasses} font-light`}
         htmlFor={id} 

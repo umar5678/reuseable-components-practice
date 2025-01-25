@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import parse from "html-react-parser";
+import "./quill.css"
 
 const QuillRTE = () => {
   const [value, setValue] = useState(localStorage.getItem("content") || "");

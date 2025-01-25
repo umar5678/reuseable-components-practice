@@ -6,6 +6,7 @@ const Button = forwardRef(
       className = "",
       variant = "default",
       size = "default",
+      type="button",
       disabled = false,
       ...props
     },
@@ -45,6 +46,7 @@ const Button = forwardRef(
         } ${disabled ? disabledClasses : ""} ${className}`}
         ref={ref}
         disabled={disabled}
+      type={type}
         {...props}
       />
     );
