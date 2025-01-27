@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Modal = ({ isOpen, onClose, children, title }) => {
+const Modal = ({ isOpen, onClose, children, title, width }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -26,7 +26,7 @@ const Modal = ({ isOpen, onClose, children, title }) => {
         >
           {/* Modal Content */}
           <motion.div
-            className="bg-white dark:bg-gray-7 rounded-lg p-6 w-full max-w-md shadow-lg"
+            className={`bg-white dark:bg-gray-7 rounded-lg p-6 w-full shadow-lg mx-2 ${width}`}
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}
