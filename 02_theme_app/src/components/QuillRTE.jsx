@@ -55,7 +55,8 @@ const QuillRTE = () => {
         value={value}
         onChange={handleChange}
       />
-      <div>{parse(value)}</div>
+      <h1 className="my-6 text-4xl font-bold">Output</h1>
+      <div className="my-6">{parse(value)}</div>
     </div>
   );
 };
