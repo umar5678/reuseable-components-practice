@@ -5,6 +5,7 @@ import DisplayMcqs from "./DisplayMcqs";
 import MCQModal from "../modals/MCQModal";
 // Gemini AI
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import TestMCQs from "../TestMCQs";
 
 const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -110,6 +111,10 @@ const CreateMCQs = () => {
         editMcq={handleEditMcq}
         deleteMcq={handleDeleteMcq}
       />
+
+      <div className="mt-32">
+        <TestMCQs />
+      </div>
     </div>
   );
 };
