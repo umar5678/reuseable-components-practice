@@ -41,7 +41,7 @@ const generateMCQs = async (promptMsg) => {
 
     return MCQs;
   } catch (error) {
-    onsole.error("Error generating quiz:", error);
+    console.error("Error generating quiz:", error);
     throw new Error("Failed to generate quiz questions");
   }
 };
@@ -113,7 +113,7 @@ const CreateMCQs = () => {
       />
 
       <div className="mt-32">
-        <TestMCQs />
+        <TestMCQs mcqs={mcqs} />
       </div>
     </div>
   );
