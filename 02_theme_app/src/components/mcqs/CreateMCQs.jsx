@@ -3,6 +3,47 @@ import Button from "../ui/Button";
 import { IoMdAdd } from "react-icons/io";
 import DisplayMcqs from "./DisplayMcqs";
 import MCQModal from "../modals/MCQModal";
+// Gemini AI
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+const generateMCQs = async (promptMsg) => {
+  const prompt = `
+  ${promptMsg}
+  Eadh Question should have 3 multiple choice options.
+  Return the response in this array of objects fromate only, no additional text:
+  [{
+    question: "string",
+    choices: ["string", "string"],
+    correctAnswer: "Number", // index of the correct choice
+  },
+  {
+    question: "string",
+    choices: ["string", "string"],
+    correctAnswer: "Number",
+   },
+    ... and so on ...
+  ]
+  `;
+
+  try {
+    const result = await model.generateContent(prompt);
+    console.log("AI result: ", result);
+    const response = result.response;
+    console.log("2 AI Response: ", response);
+    const text = response.text();
+    console.log("3 text: ", text);
+    const cleanedText = text.replace(/```(?:json)?\n?/g, "").trim();
+    const MCQs = JSON.parse(cleanedText);
+
+    return MCQs;
+  } catch (error) {
+    onsole.error("Error generating quiz:", error);
+    throw new Error("Failed to generate quiz questions");
+  }
+};
 
 const CreateMCQs = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,11 +81,21 @@ const CreateMCQs = () => {
     setMcqs((prev) => prev.filter((_, idx) => idx !== index));
   };
 
+  const promptMsg = "Generate 10 basic to intermediate questions on React.js";
+
+  const getAIgeneratedMcqs = async () => {
+    const AImcqs = await generateMCQs(promptMsg);
+    setMcqs((prev) => [...AImcqs, ...prev]);
+    console.log(AImcqs);
+  };
+
   return (
     <div>
       <Button variant="default" onClick={handleCreateMcq}>
         <IoMdAdd /> Add
       </Button>
+
+      <Button onClick={getAIgeneratedMcqs}>Get Ai generated MCQs</Button>
 
       <MCQModal
         isOpen={isModalOpen}
