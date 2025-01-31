@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Button from "./ui/Button";
+import { SiTicktick } from "react-icons/si";
+import { TbXboxX } from "react-icons/tb";
 
 const TestMCQs = () => {
   const mcqs = [
@@ -93,83 +95,97 @@ const TestMCQs = () => {
     },
   ];
   // create a side array of questions objects that includes correct answer and studentAnswer along with other data
-  const [answeredMcqs, setAnsweredMcqs] = useState(mcqs);
-  const [showResults, setShowResults] = useState(false);
 
-  const [marks, setMarks] = useState(null);
+  const [answeredMcqs, setAnsweredMcqs] = useState(
+    mcqs.map((mcq) => ({ ...mcq, studentAnswer: null }))
+  ); // Initialize studentAnswer
+  const [showResults, setShowResults] = useState(false);
+  const [marks, setMarks] = useState(0); // Initialize marks to 0
 
   const handleStudentAnswer = (choiceIndex, questionIndex) => {
-    const newKey = "studentAnswer";
     setAnsweredMcqs((prev) =>
       prev.map((mcq, idx) =>
-        idx === questionIndex ? { ...mcq, [newKey]: choiceIndex } : mcq
+        idx === questionIndex ? { ...mcq, studentAnswer: choiceIndex } : mcq
       )
     );
   };
 
   const getResults = () => {
-    // calculate marks
-    // showResults true >.>>....>>. render answeredMcqs in results formate
-    console.log(answeredMcqs);
     let score = 0;
-    for (let i = 0; i < answeredMcqs.length; i++) {
-      if (answeredMcqs[i].correctAnswer === answeredMcqs[i].studentAnswer) {
+    answeredMcqs.forEach((mcq) => {
+      if (
+        mcq.studentAnswer !== null &&
+        mcq.correctAnswer === mcq.studentAnswer
+      ) {
         score++;
-      } else {
-        score = score;
       }
-      setMarks(score);
-    }
-
+    });
+    setMarks(score);
     setShowResults(true);
+  };
+
+  const getChoiceStyle = (mcq, choiceIndex) => {
+    if (!showResults) return ""; // No styling before results
+
+    if (mcq.correctAnswer === choiceIndex) {
+      return "text-green-500"; // Correct answer always green
+    } else if (
+      mcq.studentAnswer === choiceIndex &&
+      mcq.studentAnswer !== mcq.correctAnswer
+    ) {
+      return "text-red-500"; // Incorrect answer red
+    }
+    return "";
   };
 
   return (
     <div>
       <h1>Mcqs for Students</h1>
-      <div>
-        {mcqs.length > 0 ? (
-          <p className="my-4">Total Question: {mcqs.length}</p>
-        ) : null}
-      </div>
-
-      <p>Yours scores {marks}</p>
-      {answeredMcqs.length === 0 ? (
-        <h1>No Questions available</h1>
-      ) : (
-        <div>
-          {answeredMcqs.map((mcq, index) => (
-            <div key={index}>
-              <h1 className="mt-6">{mcq.question}</h1>
-
-              {mcq.choices && mcq.choices.length > 0 ? (
-                <div>
-                  <ul>
-                    {mcq.choices.map((choice, i) => (
-                      <li key={i} className={`mt-1`}>
-                        <input
-                          type="radio"
-                          checked={mcq.studentAnswer === i}
-                          onChange={() => handleStudentAnswer(i, index)}
-                          className="h-4 w-4 relative  mr-3"
-                        />
-
-                        {choice || "No choice provided"}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+      <p className="my-4">Total Questions: {mcqs.length}</p> {/* Simplified */}
+      {showResults && <p>Your Score: {marks}</p>}{" "}
+      {/* Conditionally show score */}
+      {answeredMcqs.map((mcq, index) => (
+        <div key={index}>
+          <div className="flex items-center mt-6 justify-between">
+            <h1 className="">{mcq.question}</h1>{" "}
+            {showResults &&
+              (mcq.correctAnswer === mcq.studentAnswer ? (
+                <span>{<SiTicktick className="text-green-500" />}</span>
               ) : (
-                <h1>No Choices avaailable for this question</h1>
-              )}
-            </div>
-          ))}
+                <span>{<TbXboxX className="text-red-500" />}</span>
+              ))}
+          </div>
+          <ul>
+            {mcq.choices.map((choice, i) => (
+              <li key={i} className="mt-1">
+                <input
+                  type="radio"
+                  checked={
+                    showResults
+                      ? mcq.correctAnswer === i
+                      : mcq.studentAnswer === i
+                  } // Correct answer checked in results
+                  onChange={
+                    showResults ? null : () => handleStudentAnswer(i, index)
+                  } // Disable radio buttons in results
+                  className="h-4 w-4 relative mr-3"
+                  disabled={showResults}
+                />
+                <span className={getChoiceStyle(mcq, i)}>
+                  {" "}
+                  {/* Dynamic styling */}
+                  {choice || "No choice provided"}
+                </span>{" "}
+              </li>
+            ))}
+          </ul>
         </div>
-      )}
-
+      ))}
       <div className="mt-4">
-        <Button variant="primary" onClick={getResults}>
-          Get Results
+        <Button variant="primary" onClick={getResults} disabled={showResults}>
+          {" "}
+          {/* Disable button after submission */}
+          {showResults ? "View Results" : "Get Results"}
         </Button>
       </div>
     </div>
